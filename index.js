@@ -16,6 +16,7 @@ function generateAnswer() {
 
 function factorial(num) {
   let result = 1;
+  
   while (num) {
     result *= num--;
   };
