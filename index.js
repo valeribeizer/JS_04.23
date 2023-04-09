@@ -68,8 +68,3 @@ function createIterable(from, to) {
     },
   };
 }
-
-const iterable = createIterable( 10, 9);
-for (let item of iterable) {
-  console.log(item);
-}
