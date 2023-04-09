@@ -22,7 +22,9 @@ function selectFromInterval(numArr, num1, num2) {
   const numValidation = (num) => typeof num === "number" && isFinite(num);
 
   if (Array.isArray(numArr) && numArr.length !== 0) {
-    arrValidation = numArr.every((el) => typeof el === "number" && isFinite(el));
+    arrValidation = numArr.every(
+      (el) => typeof el === "number" && isFinite(el)
+    );
   } else {
     throw new Error();
   }
@@ -36,4 +38,38 @@ function selectFromInterval(numArr, num1, num2) {
   const newArr = numArr.filter((el) => el >= start && el <= end);
 
   return newArr;
+}
+
+//////////////TASK_3///////////////////
+function createIterable(from, to) {
+  const numValidation = (num) => typeof num === "number" && isFinite(num) && num;
+
+  if (to <= from || !numValidation(from) || !numValidation(to)) {
+    throw new Error();
+  }
+
+  return {
+    [Symbol.iterator]() {
+      let current = from;
+      return {
+        next() {
+          if (current <= to) {
+            return {
+              done: false,
+              value: current++,
+            };
+          } else {
+            return {
+              done: true,
+            };
+          }
+        },
+      };
+    },
+  };
+}
+
+const iterable = createIterable( 10, 9);
+for (let item of iterable) {
+  console.log(item);
 }
