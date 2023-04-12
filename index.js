@@ -8,3 +8,16 @@ Array.prototype.customFilter = function (checkElement, thisElement) {
   }
   return filteredArr;
 }
+
+////////////////TASK_2////////////////
+function createDebounceFunction(func, delay) {
+  let customTimeout;
+
+  return function (...args) {
+    clearTimeout(customTimeout);
+    customTimeout = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
+
