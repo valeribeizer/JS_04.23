@@ -11,13 +11,5 @@ function curry(func) {
   };
 }
 
-function sum(a, b, c) {
-  return a - b + c;
-}
 
-let curried = curry(sum);
-
-console.log( curried (1, 2, 3) ); // 6
-console.log( curried (1)(2,3) ); // 6
-console.log( curried (1)(2)(3) ); // 6
 
