@@ -81,7 +81,7 @@ class RickAndMorty {
         return response.json();
       })
       .then((data) => {
-        if (!data.ok) {
+        if (data.error) {
           return null;
         }
         return data;
@@ -98,7 +98,7 @@ class RickAndMorty {
     try {
       const response = await fetch(`https://rickandmortyapi.com/api/episode/${id}`);
       const data = await response.json();
-      if (!data.ok) {
+      if (data.error) {
         return null;
       }
       return data;
