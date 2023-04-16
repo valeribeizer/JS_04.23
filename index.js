@@ -14,7 +14,11 @@ function curry(func) {
 ///////////////TASK_2////////////////
 class Calculator {
   constructor(x, y) {
-    if (arguments.length > 2 || typeof x !== "number" || typeof y !== "number") {
+    if (
+      arguments.length > 2 ||
+      typeof x !== "number" ||
+      typeof y !== "number"
+    ) {
       throw new Error();
     }
 
@@ -60,5 +64,46 @@ class Calculator {
       throw new Error();
     }
     return this.x / this.y;
+  }
+}
+
+///////////////TASK_3////////////////
+class RickAndMorty {
+  constructor() {}
+
+  getCharacter(id) {
+    if (!id || typeof id !== "number") {
+      throw new Error();
+    }
+
+    return fetch(`https://rickandmortyapi.com/api/character/${id}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        if (!data.ok) {
+          return null;
+        }
+        return data;
+      })
+      .catch((error) => {
+        throw new Error(error);
+      })
+  }
+
+  async getEpisode(id) {
+    if (!id || typeof id !== "number") {
+      throw new Error();
+    }
+    try {
+      const response = await fetch(`https://rickandmortyapi.com/api/episode/${id}`);
+      const data = await response.json();
+      if (!data.ok) {
+        return null;
+      }
+      return data;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }
