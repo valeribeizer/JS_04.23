@@ -14,11 +14,7 @@ function curry(func) {
 ///////////////TASK_2////////////////
 class Calculator {
   constructor(x, y) {
-    if (
-      arguments.length > 2 ||
-      typeof x !== "number" ||
-      typeof y !== "number"
-    ) {
+    if (arguments.length > 2 || typeof x !== "number" || typeof y !== "number") {
       throw new Error();
     }
 
