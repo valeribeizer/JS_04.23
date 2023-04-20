@@ -55,7 +55,11 @@ class Stack {
   }
 
   static fromIterable(iterable) {
-    if (iterable === null || iterable === undefined || typeof iterable[Symbol.iterator] !== 'function') {
+    if (
+      iterable === null ||
+      iterable === undefined ||
+      typeof iterable[Symbol.iterator] !== "function"
+    ) {
       throw new Error("Not iterable");
     }
 
@@ -78,3 +82,98 @@ class Stack {
 }
 
 ///////////////////TASK_2///////////////////
+class ListNode {
+  constructor(elem) {
+    this.elem = elem;
+    this.next = null;
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null;
+    this.length = 0;
+  }
+
+  append(elem) {
+    const node = new ListNode(elem);
+
+    if (this.head === null) {
+      this.head = node;
+    } else {
+      let currentNode = this.head;
+
+      while (currentNode.next !== null) {
+        currentNode = currentNode.next;
+      }
+      currentNode.next = node;
+    }
+    this.length++;
+  }
+
+  prepend(elem) {
+    const node = new ListNode(elem);
+
+    if (this.length === 0) {
+      this.head = node;
+    } else {
+      node.next = this.head;
+      this.head = node;
+    }
+    this.length++;
+  }
+
+  find(elem) {
+    if (this.length === 0) {
+      return null;
+    }
+    let current = this.head;
+    while (current) {
+      if (current.elem === elem) {
+        return current;
+      }
+      current = current.next;
+    }
+    return null;
+  }
+
+  toArray() {
+    let current = this.head;
+    let arr = [];
+
+    if (this.length === 0) {
+      return [];
+    }
+
+    while (current !== null) {
+      arr.push(current.elem);
+      current = current.next;
+    }
+    return arr;
+  }
+
+  static fromIterable(iterable) {
+    if (
+      iterable === null ||
+      iterable === undefined ||
+      typeof iterable[Symbol.iterator] !== "function"
+    ) {
+      throw new Error("Not iterable");
+    }
+
+    const list = new LinkedList();
+
+    if (iterable instanceof Map || iterable instanceof Set) {
+      for (const item of iterable.values()) {
+        list.append(item);
+      }
+    } else {
+      for (const item of iterable) {
+        list.append(item);
+      }
+    }
+    return list;
+  }
+}
+
+///////////////////TASK_3///////////////////
