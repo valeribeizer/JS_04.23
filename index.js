@@ -26,7 +26,7 @@ class Stack {
   }
 
   pop() {
-    if (!this.stack.isEmpty()) {
+    if (!this.isEmpty()) {
       const popedItem = this.stack[this.top - 1];
       delete this.stack[this.top - 1];
       this.top -= 1;
