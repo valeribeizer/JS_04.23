@@ -130,7 +130,7 @@ class LinkedList {
     let current = this.head;
     while (current) {
       if (current.elem === elem) {
-        return current;
+        return current.elem;
       }
       current = current.next;
     }
@@ -191,7 +191,7 @@ class Car {
   #health = 100;
 
   set brand(name) {
-    if (typeof name !== "string" || name.trim() < 1 || name.trim() > 50) {
+    if (typeof name !== "string" || name.trim().length < 1 || name.trim().length > 50) {
       throw new Error("Invalid brand name");
     }
     this.#brand = name;
@@ -267,12 +267,12 @@ class Car {
       isNaN(num) ||
       !isFinite(num) ||
       !Number.isInteger(num) ||
-      vol < 1 ||
-      vol > 5
+      num < 1 ||
+      num > 5
     ) {
       throw new Error("Invalid damage");
     }
-    this.#maxFuelVolume = num;
+    this.#damage = num;
   }
 
   get brand() {
